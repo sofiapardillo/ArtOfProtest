@@ -1,13 +1,16 @@
 float w, h;
+boolean released;
 
 Circle[] c = new Circle[57];
 
 void setup(){
   //frameRate(10);
   size (1280,720);
+  //noLoop();
   w = width;
   h = height;
   background(0);
+  released = false;
   
   for (int i = 0; i < c.length; i++){
     c[i] = new Circle(w/2, h/2, 
@@ -17,6 +20,9 @@ void setup(){
     //println(c[i]);
   }
 }
+void keyReleased(){
+  released = true;
+}
 
 void draw(){
   
@@ -25,8 +31,10 @@ void draw(){
   fill(0,20);
   rect(-1,-1,width + 1,height + 1);
   
+  if (keyPressed || released){
   for(int i=0; i<c.length; i++){
     c[i].rotation();
+  }
   }
 
 }
